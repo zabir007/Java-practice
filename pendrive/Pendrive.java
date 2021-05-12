@@ -17,6 +17,8 @@ public class Pendrive {
     private ProductSpecifications [] specifications;
     private  FAQ [] question;
     private  Image [] gallery;
+    private int fetCount;
+    private int specCount;
 
     public Pendrive(String title, String summary, Price price) {
         this.id = UUID.randomUUID().toString();
@@ -24,10 +26,12 @@ public class Pendrive {
         this.summary = summary;
         this.price = price;
         this.status = ProductStatus.UPCOMING;
-        this.features = new String[10];
+        this.features = new String[5];
         this.specifications = new ProductSpecifications[20];
         this.question = new FAQ[10];
         this.gallery = new Image[5];
+        fetCount = 0;
+        specCount = 0;
     }
 
     public Pendrive(String title, String summary, String brand, String SKU, Price price, String productCode) {
@@ -43,6 +47,8 @@ public class Pendrive {
         this.specifications = new ProductSpecifications[20];
         this.question = new FAQ[10];
         this.gallery = new Image[5];
+        fetCount = 0;
+        specCount = 0;
     }
 
     public Pendrive() {
@@ -159,11 +165,42 @@ public class Pendrive {
     }
 
 //    adding method
-    public void addF(String feature) {
-        features[feature.length()] = feature;
+    public void addF(String fet) {
+            features[fetCount++] = fet;
     }
     public void addS(ProductSpecifications spec) {
-        specifications[spec.length()] = spec;
+            specifications[specCount++] = spec;
+    }
+
+    public void addQues(FAQ ques) {
+        if(question.length < 10) {
+            question[question.length] = ques;
+        }
+    }
+
+    public void addImage(Image img) {
+        if (gallery.length < 5) {
+            gallery[gallery.length] = img;
+        }
+    }
+
+    public void drawProduct() {
+        System.out.println("title: ");
+        System.out.println("---------------------------");
+        System.out.println("Brand: " + brand + "| ProductCode" + productCode + "SKU |" + SKU);
+        System.out.println("");
+        System.out.println(summary);
+
+        System.out.println("Features: ");
+        System.out.println("----------------------------");
+        for(int i =0; i< fetCount ; i++) {
+            System.out.println("features :" + ".\t" + features[i]);
+        }
+
+        System.out.println("-----------------------------");
+        for (int i =0; i< specCount; i++) {
+            System.out.println("specifications :" + ".\t" +specifications[i]);
+        }
     }
 
     @Override
