@@ -7,7 +7,7 @@ public class Image {
     private final String id;
     private  String title;
     private  String url;
-    private  String isPrimary;
+    private  Boolean isPrimary;
 
     public Image(String title, String url) {
         this.id = UUID.randomUUID().toString();
@@ -36,21 +36,28 @@ public class Image {
         this.url = url;
     }
 
-    public String getIsPrimary() {
+    public Boolean getIsPrimary() {
         return isPrimary;
     }
 
-    public void setIsPrimary(String isPrimary) {
+    public void setIsPrimary(Boolean isPrimary) {
         this.isPrimary = isPrimary;
     }
 
+
     @Override
     public String toString() {
-        return "Image{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
-                ", isPrimary='" + isPrimary + '\'' +
-                '}';
+        return "{" +
+            " id='" + getId() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", url='" + getUrl() + "'" +
+            ", isPrimary='" + isIsPrimary() + "'" +
+            "}";
     }
+
+
+    private boolean isIsPrimary() {
+        return true;
+    }
+   
 }
